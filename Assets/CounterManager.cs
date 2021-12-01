@@ -4,16 +4,30 @@ using UnityEngine;
 
 public class CounterManager : MonoBehaviour
 {
-    string pre;
-    double ctrvalue;
-    string post;
+    public Settings setObj;
+    public string pre;
+    public double ctrvalue = 0;
+    public string post;
     void format()
     {
-        
+        GetComponent<TMPro.TextMeshProUGUI>().text = pre + " " + ctrvalue + " " + post;
     }
-    //Add to counter 
-    void add(double amnt) 
+        // Start is called before the first frame update
+    void Start()
     {
+        format();
+    }
+
+    //Add to counter 
+    public void add(double amnt) 
+    {
+        ctrvalue += amnt * setObj.mod;
+
+    }
+     public void add_float(float amnt) 
+    {
+        ctrvalue += amnt * setObj.mod;
+        format();
 
     }
 }
