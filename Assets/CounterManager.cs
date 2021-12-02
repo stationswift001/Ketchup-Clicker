@@ -8,7 +8,7 @@ public class CounterManager : MonoBehaviour
     public string pre;
     public double ctrvalue = 0;
     public string post;
-    void format()
+    public void format()
     {
         GetComponent<TMPro.TextMeshProUGUI>().text = pre + " " + ctrvalue + " " + post;
     }
