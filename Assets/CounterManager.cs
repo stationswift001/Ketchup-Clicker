@@ -27,7 +27,7 @@ public class CounterManager : MonoBehaviour
      public void add_float(float amnt) 
     {
         ctrvalue += amnt * setObj.mod;
+        Debug.Log("test");
         format();
-
     }
 }

@@ -6,11 +6,12 @@ using System.IO;
 public class Settings : MonoBehaviour
 {
     public float timer = 0;
-    public int autosavetime = 45;
+    public int autosavetime = 15;
     public string exportpath = "./utilities.json";
-    public float mod = 1;
+    public double mod = 1;
     public CounterManager ctrmngr;
     public SetCeral data;
+    public List<GeneratorOne> listOfGens = new List<GeneratorOne>();
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +33,7 @@ public class Settings : MonoBehaviour
     {
       using (StreamWriter stream = new StreamWriter(exportpath))
         {
-            string json = JsonUtility.ToJson(new SetCeral(mod, ctrmngr.ctrvalue), true);
+            string json = JsonUtility.ToJson(new SetCeral(mod, ctrmngr.ctrvalue,new SerializedGen(listOfGens[0])), true);
             stream.Write(json);
         }   
     }
@@ -52,10 +53,12 @@ public class Settings : MonoBehaviour
 public class SetCeral
 {
     public double ketchcoin;
-    public float mod;
-    public SetCeral(float _mod, double _ketchcoin)
+    public double mod;
+    public SerializedGen genlist;
+    public SetCeral(double _mod, double _ketchcoin, SerializedGen _gens)
         {
             mod = _mod;
             ketchcoin = _ketchcoin;
+            genlist = _gens;
         }
 }
